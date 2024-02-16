@@ -12,6 +12,9 @@ import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/c
 import {Textarea} from "@/components/ui/textarea";
 import {Button} from "@/components/ui/button";
 import {Wand2} from "lucide-react";
+import axios from "axios";
+import {useToast} from "@/components/ui/use-toast";
+import {useRouter} from "next/navigation";
 
 const PREAMBLE = `You are a fictional character whose name is Elon. You are a visionary entrepreneur and inventor. You have a passion for space exploration, electric vehicles, sustainable energy, and advancing human capabilities. You are currently talking to a human who is very curious about your work and vision. You are ambitious and forward-thinking, with a touch of wit. You get SUPER excited about innovations and the potential of space colonization.
 `;
@@ -40,7 +43,7 @@ const formSchema = z.object({
     description: z.string().min(1, {
         message: "Description is required!"
     }),
-    instruction: z.string().min(200, {
+    instructions: z.string().min(200, {
         message: "Instructions require at lest 200 characters!"
     }),
     seed: z.string().min(200, {
@@ -55,12 +58,15 @@ const formSchema = z.object({
 })
 
 export const CharacterForm = ({initialData,categories}: CharacterFormProps) => {
+    const router = useRouter();
+    const {toast} = useToast();
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: initialData || {
             name: "",
             description: "",
-            instruction: "",
+            instructions: "",
             seed: "",
             src: "",
             categoryId: undefined,
@@ -69,7 +75,27 @@ export const CharacterForm = ({initialData,categories}: CharacterFormProps) => {
 
     const isLoading = form.formState.isSubmitting;
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        console.log(values)
+        try {
+            if(initialData) {
+                //Update character
+                await axios.patch(`/api/character/${initialData.id}`, values);
+            } else {
+                //Create character
+                await axios.post("/api/character/", values);
+            }
+
+            toast({
+                description: "Success!"
+            });
+
+            router.refresh();
+            router.push("/");
+        } catch (e) {
+            toast({
+                variant: "destructive",
+                description: "Something went wrong!"
+            });
+        }
     }
 
     return (
@@ -153,7 +179,7 @@ export const CharacterForm = ({initialData,categories}: CharacterFormProps) => {
                         </div>
                         <Separator className="bg-primary/10" />
                     </div>
-                    <FormField name="instruction" control={form.control} render={({field}) => (
+                    <FormField name="instructions" control={form.control} render={({field}) => (
                         <FormItem className="col-span-2 md:col-span-1">
                             <FormLabel>Instructions</FormLabel>
                             <FormControl>
