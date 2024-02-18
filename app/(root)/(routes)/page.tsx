@@ -1,7 +1,7 @@
 import {SearchInput} from "@/components/search-input";
 import {Categories} from "@/components/categories";
 import prismadb from "@/lib/prismadb";
-import {Characters} from "../../../components/characters";
+import {Characters} from "@/components/characters";
 
 interface RootPageProps {
     searchParams: {
