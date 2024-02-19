@@ -74,7 +74,7 @@ export const ChatHeader = ({character}: ChatHeaderProps) => {
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
-                        <DropdownMenuItem onClick={() => router.push(`/companion/${character.id}`)}>
+                        <DropdownMenuItem onClick={() => router.push(`/character/${character.id}`)}>
                             <Edit className="w-4 h-4 mr-2" />
                             Edit
                         </DropdownMenuItem>
