@@ -33,7 +33,7 @@ export const ChatMessages = ({messages = [],isLoading,character}: ChatMessagesPr
             <ChatMessage isLoading={fakeLoading} src={character.src} role="system" content={`Hello, I am ${character.name}, ${character.description}`} />
             {
                 messages.map((message) => (
-                    <ChatMessage key={message.content} role={message.role} content={message.content} src={message.src}/>
+                    <ChatMessage key={message.content} role={message.role} content={message.content} src={character.src}/>
                 ))
             }
 
