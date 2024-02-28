@@ -13,6 +13,7 @@
 ## Information
 - Website: www.mehmettepeli.com
 - E-Mail: mehmet@mehmettepeli.com
+- Linkedin: https://www.linkedin.com/in/mehmettepeli
 
 <img src="https://i.imgur.com/epPf3Xo.jpeg"/>
 <img src="https://i.imgur.com/RI8db9F.jpeg"/>
