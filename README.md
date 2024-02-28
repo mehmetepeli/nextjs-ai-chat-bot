@@ -1,3 +1,22 @@
+# NextJS AI ChatBot
+## App Environment
+- NextJS
+- ReactJS
+- TypeScript
+- OpenAI
+- Stripe
+- MySQL
+- Prisma
+- Tailwind
+- Dark / Light / System Mode
+
+## Information
+- Website: www.mehmettepeli.com
+- E-Mail: mehmet@mehmettepeli.com
+
+<img src="https://i.imgur.com/epPf3Xo.jpeg"/>
+<img src="https://i.imgur.com/RI8db9F.jpeg"/>
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
